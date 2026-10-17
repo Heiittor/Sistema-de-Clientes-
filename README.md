@@ -24,11 +24,12 @@ PHP (procedural) + PDO · MySQL · Bootstrap 4 (template SB Admin 2) · Chart.js
 
 ## 📁 Estrutura do Projeto
 
+```text
 hello/
-├── components/        # partials reutilizáveis (header, footer, sidebar, topbar)
+├── components/             # partials reutilizáveis (header, footer, sidebar, topbar)
 ├── css/
-├── functions/         # lógica de CRUD e conexão com o banco
-│   ├── connect.example.php   # modelo de configuração (sem credenciais reais)
+├── functions/              # lógica de CRUD e conexão com o banco
+│   ├── connect.example.php # modelo de configuração (sem credenciais reais)
 │   ├── clients.php
 │   ├── products.php
 │   ├── orders.php
@@ -38,8 +39,8 @@ hello/
 │   └── logout.php
 ├── img/
 ├── js/
-│   └── demo/           # scripts dos gráficos do dashboard
-├── pages/              # views de cada seção
+│   └── demo/               # scripts dos gráficos do dashboard
+├── pages/                  # views de cada seção
 │   ├── home.php
 │   ├── clients.php / edit_clients.php
 │   ├── products.php / edit_products.php
@@ -47,7 +48,8 @@ hello/
 │   └── users.php / edit_users.php
 ├── template/
 ├── vendor/
-└── index.php           # roteador principal (?p=pagina)
+└── index.php               # roteador principal (?p=pagina)
+```
 
 ## ▶️ Como Rodar Localmente
 
