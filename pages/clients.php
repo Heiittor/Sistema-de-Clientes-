@@ -1,5 +1,11 @@
 <?php require './functions/clients.php' ?>
 
+<?php if (($_GET['erro'] ?? '') === 'tem_pedidos'): ?>
+    <div class="alert alert-warning">
+        Este cliente possui pedidos e não pode ser excluído.
+    </div>
+<?php endif; ?>
+
 <h1 class="h3 mb-2 text-gray-800">Clientes</h1>
 <p class="mb-4">Esta e a pagina de manutenção de clientes.</p>
 

@@ -53,7 +53,16 @@ function setClients($nome, $idade, $id){
 
 function deleteClients($id){
     $db = connect();
-    $query = $db->prepare("DELETE FROM clientes WHERE client_id = $id");
-    $query->execute();
-    header("Location: ../?p=clients");
+    try {
+        $query = $db->prepare("DELETE FROM clientes WHERE client_id = :id");
+        $query->execute([':id' => $id]);
+        header("Location: ../?p=clients");
+    } catch (PDOException $e) {
+        if ($e->errorInfo[1] == 1451) { // violação de foreign key
+            header("Location: ../?p=clients&erro=tem_pedidos");
+        } else {
+            throw $e;
+        }
+    }
+    exit;
 }
