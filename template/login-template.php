@@ -40,6 +40,10 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Bem Vindo de Volta!</h1>
                                     </div>
+                                    <?php if (!empty($_SESSION['login_error'])): ?>
+                                         <div class="alert alert-danger"><?= htmlspecialchars($_SESSION['login_error']) ?></div>
+                                         <?php unset($_SESSION['login_error']); ?>
+                                    <?php endif; ?>
                                     <form class="user" action="../functions/login.php" method="post">
                                         <div class="form-group">
                                             <input type="email" name="email" class="form-control form-control-user"

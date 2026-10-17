@@ -2,12 +2,16 @@
 session_start();
 require_once 'connect.php';
 
-$email = isset($_POST['email']) ? $_POST['email'] : '';
-$password = isset($_POST['password']) ? md5($_POST['password']) : '';
+$email = trim($_POST['email'] ?? '');
+$password = $_POST['password'] ?? '';
 
-if (!empty($email) && !empty($password)) {
-    autenticar($email, $password);
+if ($email !== '' && $password !== '') {
+    autenticar($email, md5($password));
 }
+
+$_SESSION['login_error'] = 'Informe e-mail e senha.';
+header("Location: /");
+exit;
 
 function autenticar($email, $password){
     $db = connect();
@@ -21,6 +25,8 @@ function autenticar($email, $password){
     if ($result) {
         unset($result['password']);
         $_SESSION['user'] = $result;
+    } else {
+        $_SESSION['login_error'] = 'E-mail ou senha incorretos.';
     }
 
     header("Location: /");
