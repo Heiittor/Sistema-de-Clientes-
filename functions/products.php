@@ -63,8 +63,16 @@ function setProducts($nome, $preco, $id){
 
 function deleteProducts($id){
     $db = connect();
-    $query = $db->prepare("DELETE FROM products WHERE product_id = :id");
-    $query->execute([':id' => $id]);
-    header("Location: ../?p=products");
+    try {
+        $query = $db->prepare("DELETE FROM products WHERE product_id = :id");
+        $query->execute([':id' => $id]);
+        header("Location: ../?p=products");
+    } catch (PDOException $e) {
+        if ($e->errorInfo[1] == 1451) { // violação de foreign key
+            header("Location: ../?p=products&erro=tem_pedidos");
+        } else {
+            throw $e;
+        }
+    }
     exit;
 }

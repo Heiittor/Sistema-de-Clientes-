@@ -11,6 +11,11 @@
 </form>
 
 <!-- Tabela de Dados -->
+ <?php if (($_GET['erro'] ?? '') === 'tem_pedidos'): ?>
+    <div class="alert alert-warning">
+        Este produto está em pedidos e não pode ser excluído.
+    </div>
+<?php endif; ?>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Cadastro de Produtos</h6>
